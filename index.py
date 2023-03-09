@@ -1,7 +1,7 @@
 # Imports
 from objects.userStats import UserStats
 from objects.schedule import Schedule
-from datetime import datetime
+from datetime import datetime, date
 
 # user status
 session:str = ''
@@ -45,8 +45,12 @@ def scheduleTasks():
 
         try:
             str_date = str(input('Ex: 01/01/0001\ntaskDuration: '))
-            while int(str_date[-4::]) < 2023:
-                print('\nWrong year!\n') 
+            current_date = date.today()
+            current_date = format(current_date, "%d/%m/%Y")
+            print(str_date[0:2],str_date[3:5],str_date[6:10])
+            print(current_date[0:2],current_date[3:5],current_date[6:10])
+            while str_date[0:2] < current_date[0:2] or str_date[3:5] < current_date[3:5] or str_date[6:10] < current_date[6:10]:
+                print('\nIncorrect date!\n') 
                 str_date = str(input('Ex: 01/01/0001\ntaskDuration: '))
             taskDuration = datetime.strptime(str_date, '%d/%m/%Y').date()
         except:
@@ -139,4 +143,4 @@ def register():
 
 
 # call functions
-start()
+scheduleTasks()

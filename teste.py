@@ -1,10 +1,22 @@
-from datetime import datetime
+from datetime import datetime, date
 
 str_date = '11/07/2018'
 
 date = datetime.strptime(str_date, '%d/%m/%Y').date()
 
-print(date)
+data = '12/10/2023'
+
+
+current_date = date.today()
+current_date = format(current_date, "%d/%m/%Y")
+print(current_date)
+
+day = data[0:2]
+month = data[3:5]
+year = data[6:10]
+print(f'Day: {day}\nMonth: {month}\nYear: {year}')
+
+# print(date)
 
 # Python3 code to demonstrate working of
 # Validate String date format
