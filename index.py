@@ -29,6 +29,8 @@ def panel():
     esc = str(input(f'\n****** User Panel ******\n -- Welcome {sessionName}\nSchedule Tasks (1)\nView Tasks (2)\nModify Tasks (3)\nExit (4)\n'))
     if esc == '1':
         scheduleTasks()
+    if esc == '2':
+        viewTasks()
 
 # task scheduling function
 def scheduleTasks():
@@ -44,14 +46,14 @@ def scheduleTasks():
             taskDescription = str(input('Task description: '))
 
         try:
-            str_date = str(input('Ex: 01/01/0001\ntaskDuration: '))
+            str_date = str(input('Ex: 01/01/0001\nTask duration: '))
             current_date = date.today()
             current_date = format(current_date, "%d/%m/%Y")
             print(str_date[0:2],str_date[3:5],str_date[6:10])
             print(current_date[0:2],current_date[3:5],current_date[6:10])
             while str_date[0:2] < current_date[0:2] or str_date[3:5] < current_date[3:5] or str_date[6:10] < current_date[6:10]:
                 print('\nIncorrect date!\n') 
-                str_date = str(input('Ex: 01/01/0001\ntaskDuration: '))
+                str_date = str(input('Ex: 01/01/0001\nTask duration: '))
             taskDuration = datetime.strptime(str_date, '%d/%m/%Y').date()
         except:
             print('\nIncorrect date format!')
@@ -76,6 +78,10 @@ def scheduleTasks():
     except NameError:
         print('\nThere was some error...')
         panel()
+
+# task view function
+def viewTasks():
+    print('')
 
 # start function
 def start():
