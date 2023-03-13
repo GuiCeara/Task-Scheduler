@@ -81,7 +81,9 @@ def scheduleTasks():
 
 # task view function
 def viewTasks():
-    print('')
+    print('\nViewing Tasks...\n')
+    obj = Schedule.listTasks(user='admin')
+    
 
 # start function
 def start():
@@ -149,4 +151,4 @@ def register():
 
 
 # call functions
-scheduleTasks()
+viewTasks()

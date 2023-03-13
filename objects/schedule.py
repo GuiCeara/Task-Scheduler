@@ -3,6 +3,7 @@ from objects.connection import Con
 objectCon = Con()
 cursor = objectCon.mycursor
 mydb = objectCon.mydb
+cursorFilter = objectCon.cursorFilter
 
 class Schedule():
     
@@ -23,3 +24,16 @@ class Schedule():
         cursor.execute(sql, val)
         mydb.commit()
         return True
+
+    @classmethod
+    def listTasks(cls, user):
+
+        tuple1 = user
+
+        query = "SELECT * FROM tarefa WHERE fk_usuario_user = 'teste' " 
+        cursor.execute(query)
+        myresult = cursor.fetchall()
+        for x in myresult:
+            print(x)
+
+    
