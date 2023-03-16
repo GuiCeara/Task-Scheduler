@@ -49,8 +49,6 @@ def scheduleTasks():
             str_date = str(input('Ex: 01/01/0001\nTask duration: '))
             current_date = date.today()
             current_date = format(current_date, "%d/%m/%Y")
-            print(str_date[0:2],str_date[3:5],str_date[6:10])
-            print(current_date[0:2],current_date[3:5],current_date[6:10])
             while str_date[0:2] < current_date[0:2] or str_date[3:5] < current_date[3:5] or str_date[6:10] < current_date[6:10]:
                 print('\nIncorrect date!\n') 
                 str_date = str(input('Ex: 01/01/0001\nTask duration: '))
@@ -82,7 +80,13 @@ def scheduleTasks():
 # task view function
 def viewTasks():
     print('\nViewing Tasks...\n')
-    obj = Schedule.listTasks(user='admin')
+    user = sessionName
+    try:
+        obj = Schedule.listTasks(user)
+        panel()
+    except:
+        print('\nThere was some error...')
+        panel()
     
 
 # start function
@@ -151,4 +155,4 @@ def register():
 
 
 # call functions
-viewTasks()
+start()

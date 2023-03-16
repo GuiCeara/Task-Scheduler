@@ -10,4 +10,3 @@ class Con():
     )
 
     mycursor = mydb.cursor()
-    cursorFilter = connection.cursor(prepared=True)

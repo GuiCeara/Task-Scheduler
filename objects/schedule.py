@@ -1,9 +1,9 @@
 from objects.connection import Con
+from datetime import date
 
 objectCon = Con()
 cursor = objectCon.mycursor
 mydb = objectCon.mydb
-cursorFilter = objectCon.cursorFilter
 
 class Schedule():
     
@@ -28,12 +28,17 @@ class Schedule():
     @classmethod
     def listTasks(cls, user):
 
-        tuple1 = user
-
-        query = "SELECT * FROM tarefa WHERE fk_usuario_user = 'teste' " 
-        cursor.execute(query)
+        current_date = date.today()
+        current_date = format(current_date, "%d/%m/%Y")
+        cursor.execute(f"SELECT * FROM tarefa WHERE fk_usuario_user = '{user}' " )
         myresult = cursor.fetchall()
         for x in myresult:
-            print(x)
+            dateTask = x[3]
+            dateTask = format(dateTask, "%d/%m/%Y")
+            if current_date > dateTask:
+                status = 'Inactive'
+            else:
+                status = "Active"
+            print(f"Task Id: {x[0]}\nTask Name: {x[1]}\nTask Description: {x[2]}\nStatus: {status}\n")
 
     
